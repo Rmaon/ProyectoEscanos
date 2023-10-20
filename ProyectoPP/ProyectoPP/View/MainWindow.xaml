@@ -1,0 +1,73 @@
+﻿<Window x:Class="ProyectoPP.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProyectoPP"
+        mc:Ignorable="d"
+        Title="D'HONT" Height="448" Width="801"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="97*"/>
+            <ColumnDefinition Width="63*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock HorizontalAlignment="Left" Margin="254,31,0,0" TextWrapping="Wrap" Text="MADRID ELECTIONS" VerticalAlignment="Top" FontSize="40" FontFamily="Comic Sans MS" FontStyle="Oblique" FontWeight="Bold" Width="446" Grid.ColumnSpan="2"/>
+        <Grid Margin="10,115,0,0" Grid.ColumnSpan="2"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TabControl x:Name="tb" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TabStripPlacement="Left" SelectionChanged="TabControl_SelectionChanged" Width="788">
+                <TabItem Header="PREVIOUS DATA  " FontFamily="Comic Sans MS" FontWeight="Bold">
+                    <Grid Background="White" Margin="0,55,0,3" Width="592">
+                        <Label Content="POPULATION" HorizontalAlignment="Right" Margin="0,73,291,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontWeight="Bold"/>
+                        <Label Content="ABSTENTION VOTES" HorizontalAlignment="Right" Margin="0,99,291,0" VerticalAlignment="Top" RenderTransformOrigin="0.406,0.441" FontFamily="Comic Sans MS" FontWeight="Bold"/>
+                        <Label Content="NULL VOTES" HorizontalAlignment="Right" Margin="0,125,291,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontWeight="Bold"/>
+
+                        <TextBox x:Name="txtPopu" Margin="310,77,162,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Right" Text="{Binding Population, UpdateSourceTrigger=PropertyChanged}">
+                            <TextBox.Effect>
+                                <DropShadowEffect Color="Black" Direction="315" ShadowDepth="5" Opacity="0.7" BlurRadius="2"/>
+                            </TextBox.Effect>
+                        </TextBox>
+
+                        <TextBox x:Name="txtAbsten" HorizontalAlignment="Left" Margin="310,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Right" Text="{Binding AbstentionVotes, UpdateSourceTrigger=PropertyChanged}">
+                            <TextBox.Effect>
+                                <DropShadowEffect Color="Black" Direction="315" ShadowDepth="5" Opacity="0.7" BlurRadius="2"/>
+                            </TextBox.Effect>
+                        </TextBox>
+
+                        <TextBox x:Name="txtNull" HorizontalAlignment="Left" Margin="310,129,0,0" TextWrapping="Wrap" Text="{Binding NullVotes}" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Right">
+                            <TextBox.Effect>
+                                <DropShadowEffect Color="Black" Direction="315" ShadowDepth="5" Opacity="0.7" BlurRadius="2"/>
+                            </TextBox.Effect>
+                        </TextBox>
+
+
+                        <Button x:Name="btnMandar" Content="Save" HorizontalAlignment="Center" Margin="0,174,0,0" VerticalAlignment="Top">
+                            <!-- Efecto de sombra para el Button -->
+                            <Button.Effect>
+                                <DropShadowEffect Color="Black" Direction="315" ShadowDepth="4" Opacity="0.7" BlurRadius="2"/>
+                            </Button.Effect>
+                        </Button>
+
+
+                    </Grid>
+
+                </TabItem>
+                <TabItem Header="PARTIES MANAGMENT      " FontFamily="Comic Sans MS" FontWeight="Bold">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="SIMULATION " FontFamily="Comic Sans MS" FontWeight="Bold">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+            </TabControl>
+        </Grid>
+        <Image HorizontalAlignment="Left" Height="80" Margin="39,20,0,0" VerticalAlignment="Top" Width="117" Source="/i31CS.png" RenderTransformOrigin="0.545,0.621"/>
+
+    </Grid>
+</Window>
