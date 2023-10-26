@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:ProyectoPP"
         mc:Ignorable="d"
         Title="D'HONT" Height="448" Width="801"
-        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        ResizeMode="NoResize">
 
     <Grid>
 
@@ -22,9 +23,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TabControl x:Name="tb" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TabStripPlacement="Left" SelectionChanged="TabControl_SelectionChanged" Width="788">
+            <TabControl x:Name="tb" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TabStripPlacement="Left" SelectionChanged="TabControl_SelectionChanged" >
                 <TabItem Header="PREVIOUS DATA  " FontFamily="Comic Sans MS" FontWeight="Bold">
-                    <Grid Background="White" Margin="0,55,0,3" Width="592">
+                    <Grid Background="White">
                         <Label Content="POPULATION" HorizontalAlignment="Right" Margin="0,73,291,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontWeight="Bold"/>
                         <Label Content="ABSTENTION VOTES" HorizontalAlignment="Right" Margin="0,99,291,0" VerticalAlignment="Top" RenderTransformOrigin="0.406,0.441" FontFamily="Comic Sans MS" FontWeight="Bold"/>
                         <Label Content="NULL VOTES" HorizontalAlignment="Right" Margin="0,125,291,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontWeight="Bold"/>
@@ -60,7 +61,46 @@
 
                 </TabItem>
                 <TabItem Header="PARTIES MANAGMENT      " FontFamily="Comic Sans MS" FontWeight="Bold">
-                    <Grid Background="#FFE5E5E5"/>
+                    <Grid Background="White">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.6*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0" Background="White">
+                            <DataGrid x:Name="partyDataGrid" AutoGenerateColumns="False" Height="241" VerticalAlignment="Top" SelectionChanged="partyDataGrid_SelectionChanged">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Acronym" Binding="{Binding Acronym}" Width="*"/>
+                                    <DataGridTextColumn Header="Party" Binding="{Binding Name}" Width="*"/>
+                                    <DataGridTextColumn Header="President" Binding="{Binding President}" Width="*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Button Content="Delete" HorizontalAlignment="Left" Margin="44,246,0,0" VerticalAlignment="Top" Height="38" Width="50" Click="Button_Click_1"/>
+                        </Grid>
+
+                        <Grid Grid.Column="1" Background="White">
+                            <Label Content="Acronym" HorizontalAlignment="Right" Margin="0,26,171,0" VerticalAlignment="Top"/>
+                            <Label Content="Party" HorizontalAlignment="Right" Margin="0,53,171,0" VerticalAlignment="Top"/>
+                            <Label Content="President" HorizontalAlignment="Right" Margin="0,80,171,0" VerticalAlignment="Top"/>
+
+                            <TextBox x:Name="txtAcronym" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Right"  Margin="74,30,10,0">
+                                <TextBox.Effect>
+                                    <DropShadowEffect Color="Black" Direction="315" ShadowDepth="5" Opacity="0.7" BlurRadius="2"/>
+                                </TextBox.Effect>
+                            </TextBox>
+                            <TextBox x:Name="txtPartyName" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Right" Margin="74,57,10,0">
+                                <TextBox.Effect>
+                                    <DropShadowEffect Color="Black" Direction="315" ShadowDepth="5" Opacity="0.7" BlurRadius="2"/>
+                                </TextBox.Effect>
+                            </TextBox>
+                            <TextBox x:Name="txtPresidentName" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Right"  Margin="75,84,10,0">
+                                <TextBox.Effect>
+                                    <DropShadowEffect Color="Black" Direction="315" ShadowDepth="5" Opacity="0.7" BlurRadius="2"/>
+                                </TextBox.Effect>
+                            </TextBox>
+                            <Button Content="Save" HorizontalAlignment="Center" VerticalAlignment="Center" Height="37" Width="64" Click="Button_Click"/>
+                        </Grid>
+                    </Grid>
                 </TabItem>
                 <TabItem Header="SIMULATION " FontFamily="Comic Sans MS" FontWeight="Bold">
                     <Grid Background="#FFE5E5E5"/>

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ramon\\Documents\\GitHub\\ProyectoEscaños\\ProyectoPP\\ProyectoPP\\ProyectoPP.csproj": {}
+    "C:\\Users\\Ramon\\OneDrive\\Documentos\\GitHub\\ProyectoEscanos\\ProyectoPP\\ProyectoPP\\ProyectoPP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ramon\\Documents\\GitHub\\ProyectoEscaños\\ProyectoPP\\ProyectoPP\\ProyectoPP.csproj": {
+    "C:\\Users\\Ramon\\OneDrive\\Documentos\\GitHub\\ProyectoEscanos\\ProyectoPP\\ProyectoPP\\ProyectoPP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ramon\\Documents\\GitHub\\ProyectoEscaños\\ProyectoPP\\ProyectoPP\\ProyectoPP.csproj",
+        "projectUniqueName": "C:\\Users\\Ramon\\OneDrive\\Documentos\\GitHub\\ProyectoEscanos\\ProyectoPP\\ProyectoPP\\ProyectoPP.csproj",
         "projectName": "ProyectoPP",
-        "projectPath": "C:\\Users\\Ramon\\Documents\\GitHub\\ProyectoEscaños\\ProyectoPP\\ProyectoPP\\ProyectoPP.csproj",
+        "projectPath": "C:\\Users\\Ramon\\OneDrive\\Documentos\\GitHub\\ProyectoEscanos\\ProyectoPP\\ProyectoPP\\ProyectoPP.csproj",
         "packagesPath": "C:\\Users\\Ramon\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ramon\\Documents\\GitHub\\ProyectoEscaños\\ProyectoPP\\ProyectoPP\\obj\\",
+        "outputPath": "C:\\Users\\Ramon\\OneDrive\\Documentos\\GitHub\\ProyectoEscanos\\ProyectoPP\\ProyectoPP\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
