@@ -30,7 +30,7 @@
                         <Label Content="ABSTENTION VOTES" HorizontalAlignment="Right" Margin="0,99,291,0" VerticalAlignment="Top" RenderTransformOrigin="0.406,0.441" FontFamily="Comic Sans MS" FontWeight="Bold"/>
                         <Label Content="NULL VOTES" HorizontalAlignment="Right" Margin="0,125,291,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontWeight="Bold"/>
 
-                        <TextBox x:Name="txtPopu" Margin="310,77,162,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Right" Text="{Binding Population, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox x:Name="txtPopu" IsReadOnly="true" Margin="310,77,169,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Right" Text="{Binding Population, UpdateSourceTrigger=PropertyChanged}" Height="21">
                             <TextBox.Effect>
                                 <DropShadowEffect Color="Black" Direction="315" ShadowDepth="5" Opacity="0.7" BlurRadius="2"/>
                             </TextBox.Effect>
@@ -49,7 +49,7 @@
                         </TextBox>
 
 
-                        <Button x:Name="btnMandar" Content="Save" HorizontalAlignment="Center" Margin="0,174,0,0" VerticalAlignment="Top">
+                        <Button x:Name="btnMandar" Content="Save" HorizontalAlignment="Center" Margin="0,174,0,0" VerticalAlignment="Top" Click="btnMandar_Click_1">
                             <!-- Efecto de sombra para el Button -->
                             <Button.Effect>
                                 <DropShadowEffect Color="Black" Direction="315" ShadowDepth="4" Opacity="0.7" BlurRadius="2"/>
@@ -60,7 +60,7 @@
                     </Grid>
 
                 </TabItem>
-                <TabItem Header="PARTIES MANAGMENT      " FontFamily="Comic Sans MS" FontWeight="Bold">
+                <TabItem Name="ti1" Header="PARTIES MANAGMENT      " FontFamily="Comic Sans MS" FontWeight="Bold">
                     <Grid Background="White">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.6*"/>
@@ -68,7 +68,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Grid Grid.Column="0" Background="White">
-                            <DataGrid x:Name="partyDataGrid" AutoGenerateColumns="False" Height="241" VerticalAlignment="Top" SelectionChanged="partyDataGrid_SelectionChanged">
+                            <DataGrid x:Name="partyDataGrid" AutoGenerateColumns="False" Height="241" VerticalAlignment="Top" SelectionChanged="partyDataGrid_SelectionChanged" IsReadOnly="True">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Acronym" Binding="{Binding Acronym}" Width="*"/>
                                     <DataGridTextColumn Header="Party" Binding="{Binding Name}" Width="*"/>
@@ -98,11 +98,11 @@
                                     <DropShadowEffect Color="Black" Direction="315" ShadowDepth="5" Opacity="0.7" BlurRadius="2"/>
                                 </TextBox.Effect>
                             </TextBox>
-                            <Button Content="Save" HorizontalAlignment="Center" VerticalAlignment="Center" Height="37" Width="64" Click="Button_Click"/>
+                            <Button Name="btnSave" Content="Save" HorizontalAlignment="Center" VerticalAlignment="Center" Height="37" Width="64" Click="Button_Click"/>
                         </Grid>
                     </Grid>
                 </TabItem>
-                <TabItem Header="SIMULATION " FontFamily="Comic Sans MS" FontWeight="Bold">
+                <TabItem Name="ti2" Header="SIMULATION " FontFamily="Comic Sans MS" FontWeight="Bold">
                     <Grid Background="#FFE5E5E5"/>
                 </TabItem>
             </TabControl>

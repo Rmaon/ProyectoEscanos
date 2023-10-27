@@ -2,6 +2,7 @@
 using ProyectoPP.Persistence;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -10,6 +11,9 @@ namespace ProyectoPP
 {
     public partial class MainWindow : Window
     {
+
+        private int nCreados=0;
+
         private Info info;
         private InfoManager infoManager;
 
@@ -22,6 +26,10 @@ namespace ProyectoPP
             btnMandar.Click += BtnMandar_Click;
 
             partyDataGrid.ItemsSource = partieList;
+
+            ti1.IsEnabled = false;
+            ti2.IsEnabled = false;
+
         }
 
         // Method to add an item to the list and update the DataGrid
@@ -92,12 +100,39 @@ namespace ProyectoPP
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             AddItem(txtAcronym.Text, txtPartyName.Text, txtPresidentName.Text);
+            nCreados++;
+            ti1.IsEnabled = true;
+
+            if (nCreados == 10)
+            {
+                ti2.IsEnabled = true;
+                btnSave.IsEnabled = false;
+            }
+            else
+            {
+                ti2.IsEnabled = false;
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            int selectedIndex = partyDataGrid.SelectedIndex;
-            RemoveItem(selectedIndex);
+
+            var selectedItems = partyDataGrid.SelectedItems.Cast<Partie>().ToList();
+
+            foreach (var item in selectedItems)
+            {
+                nCreados--;
+                int index = partieList.IndexOf(item);
+                RemoveItem(index);
+            }
+
+            btnSave.IsEnabled = true;
+
+        }
+
+        private void btnMandar_Click_1(object sender, RoutedEventArgs e)
+        {
+            ti1.IsEnabled = true;
         }
     }
 }
