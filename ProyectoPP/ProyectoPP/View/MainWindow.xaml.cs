@@ -3,9 +3,11 @@ using ProyectoPP.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Interop;
 
 namespace ProyectoPP
 {
@@ -82,9 +84,27 @@ namespace ProyectoPP
 
         private void BtnMandar_Click(object sender, RoutedEventArgs e)
         {
-            tb.SelectedIndex = 1;
+            bool nocorrectInfo = txtAbsten.Text == "0" || txtNull.Text == "0";
+            bool invalidFormat = int.TryParse(txtAbsten.Text, out _) && int.TryParse(txtNull.Text, out _);
 
-            MessageBox.Show("Datos guardados correctamente y cambiado a la pestaña PARTIES MANAGMENT.");
+            if (invalidFormat)
+            {
+                if (nocorrectInfo)
+                {
+                    MessageBox.Show("Introduzca datps numericos");
+                }
+                else
+                {
+                    tb.SelectedIndex = 1;
+
+                    MessageBox.Show("Datos guardados correctamente y cambiado a la pestaña PARTIES MANAGMENT.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Introduzca todos los datos");
+            }
+
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -99,39 +119,57 @@ namespace ProyectoPP
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            AddItem(txtAcronym.Text, txtPartyName.Text, txtPresidentName.Text);
-            nCreados++;
-            ti1.IsEnabled = true;
-
-            if (nCreados == 10)
+            bool nofill = string.IsNullOrEmpty(txtAcronym.Text) || string.IsNullOrEmpty(txtPartyName.Text) || string.IsNullOrEmpty(txtPresidentName.Text);
+            if (nofill)
             {
-                ti2.IsEnabled = true;
-                btnSave.IsEnabled = false;
+                MessageBox.Show("Please fill all the gaps");
             }
             else
             {
-                ti2.IsEnabled = false;
+                AddItem(txtAcronym.Text, txtPartyName.Text, txtPresidentName.Text);
+                nCreados++;
+                ti1.IsEnabled = true;
+
+                if (nCreados == 10)
+                {
+                    ti2.IsEnabled = true;
+                    btnSave.IsEnabled = false;
+                    
+                }
+                else
+                {
+                    ti2.IsEnabled = false;
+                }
             }
+            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
             var selectedItems = partyDataGrid.SelectedItems.Cast<Partie>().ToList();
-
-            foreach (var item in selectedItems)
+            if (selectedItems.Count >0)
             {
-                nCreados--;
-                int index = partieList.IndexOf(item);
-                RemoveItem(index);
-            }
+                foreach (var item in selectedItems)
+                {
+                    nCreados--;
+                    int index = partieList.IndexOf(item);
+                    RemoveItem(index);
+                }
+                ti2.IsEnabled = false;
+                btnSave.IsEnabled = true;
 
-            btnSave.IsEnabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un partido");
+            }
 
         }
 
         private void btnMandar_Click_1(object sender, RoutedEventArgs e)
         {
+
             ti1.IsEnabled = true;
         }
     }

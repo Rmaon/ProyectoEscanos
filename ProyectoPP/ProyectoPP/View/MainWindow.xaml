@@ -42,7 +42,7 @@
                             </TextBox.Effect>
                         </TextBox>
 
-                        <TextBox x:Name="txtNull" HorizontalAlignment="Left" Margin="310,129,0,0" TextWrapping="Wrap" Text="{Binding NullVotes}" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Right">
+                        <TextBox x:Name="txtNull" IsReadOnly="True" HorizontalAlignment="Left" Margin="310,129,0,0" TextWrapping="Wrap" Text="{Binding NullVotes}" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Right">
                             <TextBox.Effect>
                                 <DropShadowEffect Color="Black" Direction="315" ShadowDepth="5" Opacity="0.7" BlurRadius="2"/>
                             </TextBox.Effect>
@@ -68,14 +68,13 @@
                         </Grid.ColumnDefinitions>
 
                         <Grid Grid.Column="0" Background="White">
-                            <DataGrid x:Name="partyDataGrid" AutoGenerateColumns="False" Height="241" VerticalAlignment="Top" SelectionChanged="partyDataGrid_SelectionChanged" IsReadOnly="True">
+                            <DataGrid x:Name="partyDataGrid" AutoGenerateColumns="False" Height="233" VerticalAlignment="Top" SelectionChanged="partyDataGrid_SelectionChanged" IsReadOnly="True" Margin="0,26,0,0">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Acronym" Binding="{Binding Acronym}" Width="*"/>
                                     <DataGridTextColumn Header="Party" Binding="{Binding Name}" Width="*"/>
                                     <DataGridTextColumn Header="President" Binding="{Binding President}" Width="*"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Button Content="Delete" HorizontalAlignment="Left" Margin="44,246,0,0" VerticalAlignment="Top" Height="38" Width="50" Click="Button_Click_1"/>
                         </Grid>
 
                         <Grid Grid.Column="1" Background="White">
@@ -98,7 +97,16 @@
                                     <DropShadowEffect Color="Black" Direction="315" ShadowDepth="5" Opacity="0.7" BlurRadius="2"/>
                                 </TextBox.Effect>
                             </TextBox>
-                            <Button Name="btnSave" Content="Save" HorizontalAlignment="Center" VerticalAlignment="Center" Height="37" Width="64" Click="Button_Click"/>
+                            <Button Name="btnSave" Content="Save" HorizontalAlignment="Center" VerticalAlignment="Center" Height="37" Width="64" Click="Button_Click">
+                                <Button.Effect>
+                                    <DropShadowEffect Color="Black" Direction="315" ShadowDepth="4" Opacity="0.7" BlurRadius="2"/>
+                                </Button.Effect>
+                            </Button>
+                            <Button Content="Delete" HorizontalAlignment="Left" Margin="23,207,0,0" VerticalAlignment="Top" Height="38" Width="50" Click="Button_Click_1">
+                                <Button.Effect>
+                                    <DropShadowEffect Color="Black" Direction="315" ShadowDepth="4" Opacity="0.7" BlurRadius="2"/>
+                                </Button.Effect>
+                            </Button>
                         </Grid>
                     </Grid>
                 </TabItem>
