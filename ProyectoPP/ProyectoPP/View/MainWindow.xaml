@@ -30,7 +30,7 @@
                         <Label Content="ABSTENTION VOTES" HorizontalAlignment="Right" Margin="0,99,291,0" VerticalAlignment="Top" RenderTransformOrigin="0.406,0.441" FontFamily="Comic Sans MS" FontWeight="Bold"/>
                         <Label Content="NULL VOTES" HorizontalAlignment="Right" Margin="0,125,291,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontWeight="Bold"/>
 
-                        <TextBox x:Name="txtPopu" IsReadOnly="true" Margin="310,77,169,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Right" Text="{Binding Population, UpdateSourceTrigger=PropertyChanged}" Height="21">
+                        <TextBox x:Name="txtPopu" IsReadOnly="true" Margin="310,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Right" Text="{Binding Population, UpdateSourceTrigger=PropertyChanged}" Height="21" HorizontalAlignment="Left" Width="120">
                             <TextBox.Effect>
                                 <DropShadowEffect Color="Black" Direction="315" ShadowDepth="5" Opacity="0.7" BlurRadius="2"/>
                             </TextBox.Effect>
@@ -75,6 +75,7 @@
                                     <DataGridTextColumn Header="President" Binding="{Binding President}" Width="*"/>
                                 </DataGrid.Columns>
                             </DataGrid>
+
                         </Grid>
 
                         <Grid Grid.Column="1" Background="White">
@@ -111,7 +112,20 @@
                     </Grid>
                 </TabItem>
                 <TabItem Name="ti2" Header="SIMULATION " FontFamily="Comic Sans MS" FontWeight="Bold">
-                    <Grid Background="#FFE5E5E5"/>
+                    <Grid Background="White">
+                        <Button Content="Generate" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,28,0,0" Click="Button_Click_2" Width="136">
+                            <Button.Effect>
+                                <DropShadowEffect Color="Black" Direction="315" ShadowDepth="4" Opacity="0.7" BlurRadius="2"/>
+                            </Button.Effect>
+                        </Button>
+                        <DataGrid Name="seatsDataGrid" IsEnabled="False" AutoGenerateColumns="False" Height="233" VerticalAlignment="Top" SelectionChanged="partyDataGrid_SelectionChanged" IsReadOnly="True" Margin="94,68,94,0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Aronym" Binding="{Binding Acronym}" Width="*"/>
+                                <DataGridTextColumn Header="Votes" Binding="{Binding Name}" Width="*"/>
+                                <DataGridTextColumn Header="Seats" Binding="{Binding Seats}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
                 </TabItem>
             </TabControl>
         </Grid>

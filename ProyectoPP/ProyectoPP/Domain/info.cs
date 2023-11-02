@@ -11,7 +11,7 @@ namespace ProyectoPP.Domain
     {
         public Info()
         {
-            population = 6921267;
+            population = 69212670;
             nullVotes = 0;
             abstentionVotes = 0;
         }

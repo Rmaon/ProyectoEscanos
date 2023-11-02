@@ -37,7 +37,7 @@ namespace ProyectoPP
         // Method to add an item to the list and update the DataGrid
         private void AddItem(string acronym, string name, string president)
         {
-            partieList.Add(new Partie(acronym, name, president));
+            partieList.Add(new Partie(acronym, name, president, partieList.Count, info));
             partyDataGrid.Items.Refresh(); // Update the DataGrid
         }
 
@@ -107,16 +107,6 @@ namespace ProyectoPP
 
         }
 
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void partyDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             bool nofill = string.IsNullOrEmpty(txtAcronym.Text) || string.IsNullOrEmpty(txtPartyName.Text) || string.IsNullOrEmpty(txtPresidentName.Text);
@@ -171,6 +161,22 @@ namespace ProyectoPP
         {
 
             ti1.IsEnabled = true;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            seatsDataGrid.IsEnabled = true;
+
+            int totalSeats = 37;
+
+            partieList = Partie.CalculateSeats(partieList, totalSeats);
+
+            seatsDataGrid.ItemsSource = partieList;
+        }
+
+        private void partyDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
