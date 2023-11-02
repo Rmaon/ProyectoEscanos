@@ -22,7 +22,7 @@ namespace ProyectoPP.Persistence
             return info;
         }
 
-        internal int CalculaNullVotes(int population, int abstentionVotes)
+        internal int CalculateNullVotes(int population, int abstentionVotes)
         {
             if (population >= abstentionVotes)
             {

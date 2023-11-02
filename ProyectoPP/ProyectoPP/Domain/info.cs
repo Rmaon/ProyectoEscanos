@@ -14,7 +14,10 @@ namespace ProyectoPP.Domain
             population = 69212670;
             nullVotes = 0;
             abstentionVotes = 0;
+            avalibleVotes = 0;
         }
+
+        public int avalibleVotes { get; set; }
 
         private int population;
         public int Population
@@ -51,9 +54,11 @@ namespace ProyectoPP.Domain
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        // Notify property changes and update available votes
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            avalibleVotes = population - nullVotes - abstentionVotes;
         }
     }
 }

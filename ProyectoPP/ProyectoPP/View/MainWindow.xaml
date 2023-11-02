@@ -68,7 +68,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Grid Grid.Column="0" Background="White">
-                            <DataGrid x:Name="partyDataGrid" AutoGenerateColumns="False" Height="233" VerticalAlignment="Top" SelectionChanged="partyDataGrid_SelectionChanged" IsReadOnly="True" Margin="0,26,0,0">
+                            <DataGrid x:Name="partyDataGrid" CanUserSortColumns="False" AutoGenerateColumns="False" Height="233" VerticalAlignment="Top" SelectionChanged="partyDataGrid_SelectionChanged" IsReadOnly="True" Margin="0,26,0,0">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Acronym" Binding="{Binding Acronym}" Width="*"/>
                                     <DataGridTextColumn Header="Party" Binding="{Binding Name}" Width="*"/>
@@ -113,15 +113,19 @@
                 </TabItem>
                 <TabItem Name="ti2" Header="SIMULATION " FontFamily="Comic Sans MS" FontWeight="Bold">
                     <Grid Background="White">
-                        <Button Content="Generate" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,28,0,0" Click="Button_Click_2" Width="136">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="31*"/>
+                            <RowDefinition Height="280*"/>
+                        </Grid.RowDefinitions>
+                        <Button Content="Generate" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,28,0,0" Click="Button_Click_2" Width="136" Grid.RowSpan="2">
                             <Button.Effect>
                                 <DropShadowEffect Color="Black" Direction="315" ShadowDepth="4" Opacity="0.7" BlurRadius="2"/>
                             </Button.Effect>
                         </Button>
-                        <DataGrid Name="seatsDataGrid" IsEnabled="False" AutoGenerateColumns="False" Height="233" VerticalAlignment="Top" SelectionChanged="partyDataGrid_SelectionChanged" IsReadOnly="True" Margin="94,68,94,0">
+                        <DataGrid Name="seatsDataGrid" CanUserSortColumns="False" IsEnabled="False" AutoGenerateColumns="False" Height="233" VerticalAlignment="Top" SelectionChanged="partyDataGrid_SelectionChanged" IsReadOnly="True" Margin="94,37,94,0" Grid.Row="1">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Aronym" Binding="{Binding Acronym}" Width="*"/>
-                                <DataGridTextColumn Header="Votes" Binding="{Binding Name}" Width="*"/>
+                                <DataGridTextColumn Header="Votes" Binding="{Binding Votes}" Width="*"/>
                                 <DataGridTextColumn Header="Seats" Binding="{Binding Seats}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>

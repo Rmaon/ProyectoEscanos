@@ -2,10 +2,12 @@
 using ProyectoPP.Persistence;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Interop;
 
@@ -13,13 +15,12 @@ namespace ProyectoPP
 {
     public partial class MainWindow : Window
     {
+        private int nCreated = 0; // Counter for created items
 
-        private int nCreados=0;
+        private Info info; // Info object
+        private InfoManager infoManager; // InfoManager object
 
-        private Info info;
-        private InfoManager infoManager;
-
-        private List<Partie> partieList = new List<Partie>();
+        private List<Partie> partieList = new List<Partie>(); // List of parties
 
         public MainWindow()
         {
@@ -27,11 +28,10 @@ namespace ProyectoPP
             InitializeData();
             btnMandar.Click += BtnMandar_Click;
 
-            partyDataGrid.ItemsSource = partieList;
+            partyDataGrid.ItemsSource = partieList; // Set the DataGrid source
 
-            ti1.IsEnabled = false;
+            ti1.IsEnabled = false; // Disable tabs
             ti2.IsEnabled = false;
-
         }
 
         // Method to add an item to the list and update the DataGrid
@@ -51,8 +51,6 @@ namespace ProyectoPP
             }
         }
 
-
-
         private void InitializeData()
         {
             info = new Info();
@@ -65,10 +63,11 @@ namespace ProyectoPP
                 txtAbsten.TextChanged += TextBox_TextChanged;
             }
         }
+
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            // Handle tab selection change if needed
         }
-
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -76,7 +75,7 @@ namespace ProyectoPP
             {
                 if (int.TryParse(textBox.Text, out int abstentionVotes) && abstentionVotes >= 0)
                 {
-                    int nullVotesValue = infoManager.CalculaNullVotes(info.Population, abstentionVotes);
+                    int nullVotesValue = infoManager.CalculateNullVotes(info.Population, abstentionVotes);
                     info.NullVotes = nullVotesValue;
                 }
             }
@@ -84,87 +83,85 @@ namespace ProyectoPP
 
         private void BtnMandar_Click(object sender, RoutedEventArgs e)
         {
-            bool nocorrectInfo = txtAbsten.Text == "0" || txtNull.Text == "0";
+            bool noCorrectInfo = txtAbsten.Text == "0" || txtNull.Text == "0";
             bool invalidFormat = int.TryParse(txtAbsten.Text, out _) && int.TryParse(txtNull.Text, out _);
 
             if (invalidFormat)
             {
-                if (nocorrectInfo)
+                if (noCorrectInfo)
                 {
-                    MessageBox.Show("Introduzca datps numericos");
+                    MessageBox.Show("Please enter numeric data");
                 }
                 else
                 {
                     tb.SelectedIndex = 1;
 
-                    MessageBox.Show("Datos guardados correctamente y cambiado a la pestaña PARTIES MANAGMENT.");
+                    MessageBox.Show("Data saved successfully and switched to PARTIES MANAGEMENT tab.");
                 }
             }
             else
             {
-                MessageBox.Show("Introduzca todos los datos");
+                MessageBox.Show("Please enter all data");
             }
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            bool nofill = string.IsNullOrEmpty(txtAcronym.Text) || string.IsNullOrEmpty(txtPartyName.Text) || string.IsNullOrEmpty(txtPresidentName.Text);
-            if (nofill)
+            bool noFill = string.IsNullOrEmpty(txtAcronym.Text) || string.IsNullOrEmpty(txtPartyName.Text) || string.IsNullOrEmpty(txtPresidentName.Text);
+            if (noFill)
             {
-                MessageBox.Show("Please fill all the gaps");
+                MessageBox.Show("Please fill all the fields");
             }
             else
             {
                 AddItem(txtAcronym.Text, txtPartyName.Text, txtPresidentName.Text);
-                nCreados++;
+                nCreated++;
                 ti1.IsEnabled = true;
 
-                if (nCreados == 10)
+                if (nCreated == 10)
                 {
                     ti2.IsEnabled = true;
                     btnSave.IsEnabled = false;
-                    
                 }
                 else
                 {
                     ti2.IsEnabled = false;
                 }
             }
-            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
             var selectedItems = partyDataGrid.SelectedItems.Cast<Partie>().ToList();
-            if (selectedItems.Count >0)
+            if (selectedItems.Count > 0)
             {
                 foreach (var item in selectedItems)
                 {
-                    nCreados--;
+                    nCreated--;
                     int index = partieList.IndexOf(item);
                     RemoveItem(index);
                 }
                 ti2.IsEnabled = false;
                 btnSave.IsEnabled = true;
-
             }
             else
             {
-                MessageBox.Show("Seleccione un partido");
+                MessageBox.Show("Please select a party");
             }
-
         }
 
         private void btnMandar_Click_1(object sender, RoutedEventArgs e)
         {
-
             ti1.IsEnabled = true;
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            foreach (Partie partie in partieList)
+            {
+                partie.Seats = 0;
+            }
+
             seatsDataGrid.IsEnabled = true;
 
             int totalSeats = 37;
@@ -172,11 +169,14 @@ namespace ProyectoPP
             partieList = Partie.CalculateSeats(partieList, totalSeats);
 
             seatsDataGrid.ItemsSource = partieList;
+
+            ICollectionView view = CollectionViewSource.GetDefaultView(seatsDataGrid.ItemsSource);
+            view.SortDescriptions.Add(new SortDescription("Seats", ListSortDirection.Descending));
         }
 
         private void partyDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            // Handle selection change in the partyDataGrid if needed
         }
     }
 }
